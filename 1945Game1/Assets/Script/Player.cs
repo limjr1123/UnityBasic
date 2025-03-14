@@ -10,7 +10,17 @@ public class Player : MonoBehaviour
     private Vector2 maxBounds;
 
     //3. 애니메이터를 가져올 변수
-    Animator ani; 
+    Animator ani;
+
+    //4. 총알
+    public GameObject bullet;
+    public GameObject bullet2;
+    public GameObject bullet3;
+
+    public int power = 1;
+
+    public Transform pos = null;
+
 
     void Start()
     {
@@ -50,6 +60,22 @@ public class Player : MonoBehaviour
 
         //transform.Translate(moveX, moveY, 0);
 
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            //프리펩 위치 방향 넣고 생성
+            //POWER 획득 대비 미사일 변경
+            if (power == 1)
+                Instantiate(bullet, pos.position, Quaternion.identity);
+            else if (power == 2)
+                Instantiate(bullet2, pos.position, Quaternion.identity);
+            else
+                Instantiate(bullet3, pos.position, Quaternion.identity);
+
+        }
+
+
+
+
         //2. 화면의 경계 설정
         Vector3 newPosition = transform.position + new Vector3(moveX, moveY, 0);
 
@@ -59,4 +85,13 @@ public class Player : MonoBehaviour
         transform.position = newPosition;
 
     }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Item"))
+        {
+            power++;
+        }
+    }
+
 }

@@ -1,27 +1,27 @@
 using UnityEngine;
 
-public class Monster : MonoBehaviour
+public class Monster2 : MonoBehaviour
 {
     public float Speed = 3;
     public float Delay = 1f;
     public Transform ms1;
     public Transform ms2;
     public GameObject bullet;
-    public GameObject Item;
 
 
     void Start()
     {
+        //매서드 실행
         Invoke("CreateBullet", Delay);
 
     }
     void CreateBullet()
     {
+        // Instantiate(object, 위치, 회전) 객체를 복제 
         Instantiate(bullet, ms1.position, Quaternion.identity);
         Instantiate(bullet, ms2.position, Quaternion.identity);
-
+        
         Invoke("CreateBullet", Delay);
-
     }
     void Update()
     {
@@ -34,19 +34,5 @@ public class Monster : MonoBehaviour
         Destroy(gameObject);
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.CompareTag("Bullet"))
-        {
-            int random = Random.Range(1,10);
-            if(random <= 3)
-                CreateItem();
-        }
-    }
-
-    void CreateItem()
-    {
-        Instantiate(Item, transform.position, Quaternion.identity);
-    }
-
+    
 }
