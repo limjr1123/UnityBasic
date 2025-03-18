@@ -11,7 +11,7 @@ public class Homing : MonoBehaviour
 
     void Start()
     {
-        //플레이어 태크로 찾기
+        //플레이어 Tag로 찾기
         target = GameObject.FindGameObjectWithTag("Player");
 
         //// -> update에 놓으면 계속 추척
@@ -26,8 +26,6 @@ public class Homing : MonoBehaviour
     void Update()
     {
         transform.Translate(dirNo * Speed * Time.deltaTime);
-        
-        
         //추적 한줄처리 시 아래와 같이 사용
         //transform.position = Vector3.MoveTowards(transform.position, target.transform.position , Speed * Time.deltaTime);
     }

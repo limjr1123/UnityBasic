@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class Monster : MonoBehaviour
 {
+    public int HP = 100;
     public float Speed = 3;
     public float Delay = 1f;
     public Transform ms1;
@@ -32,21 +33,35 @@ public class Monster : MonoBehaviour
     private void OnBecameInvisible()
     {
         Destroy(gameObject);
+        //풀
+        //PoolManager.Instance.Return(gameObject);
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.CompareTag("Bullet"))
-        {
-            int random = Random.Range(1,10);
-            if(random <= 3)
-                CreateItem();
-        }
-    }
+    //private void OnTriggerEnter2D(Collider2D collision)
+    //{
+    //    if (collision.CompareTag("Bullet"))
+    //    {
+    //        int random = Random.Range(1,10);
+    //        if(random <= 3)
+    //            ItemDrop();
+    //    }
+    //}
 
-    void CreateItem()
+    void ItemDrop()
     {
         Instantiate(Item, transform.position, Quaternion.identity);
     }
 
+    //미사일에 따른 데미지 입는 함수
+    public void Damage(int attack)
+    {
+        HP -= attack;
+        if(HP <= 0)
+        {
+            ItemDrop();
+            Destroy(gameObject);
+            //풀
+            //PoolManager.Instance.Return(gameObject);
+        }
+    }
 }

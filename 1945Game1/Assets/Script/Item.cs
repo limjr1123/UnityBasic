@@ -21,13 +21,13 @@ public class Item : MonoBehaviour
     }
     // Collider2D : 물리적 충돌을 위한 2D 게임 오브젝트의 모양을 정의
 
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.CompareTag("Player"))
-        {
-            Debug.Log("아이템 충돌로그");
-            Destroy(gameObject);
-        }
-    }
+    //private void OnTriggerEnter2D(Collider2D collision)
+    //{
+    //    if (collision.CompareTag("Player"))
+    //    {
+    //        Debug.Log("아이템 충돌로그");
+    //        Destroy(gameObject);
+    //    }
+    //}
     
 }
